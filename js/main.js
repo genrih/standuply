@@ -134,9 +134,13 @@ function printMessage(res) {
 }
 
 function printTitle(result) {
-    var title = getSubject(result.messages);
+    var dateReg = /\d{1,4}([./-])\d{1,4}\1\d{1,4}/,
+        title = getSubject(result.messages);
+
     if (title.match(/brocoders/i)) {
-        $('#content').append("<div class='col'><a href='#' class='thread-link' data-thread="+ result.id + ">" + title + "</a></div>");
+        var date = title.match(dateReg)
+        if (date) { date = date[0] }
+        $('#content .table tbody').append("<tr><td>" + date + "</td><td><a href='#' class='thread-link' data-thread="+ result.id + ">" + title + "</a></td></tr>");
     }
 }
 
