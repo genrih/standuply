@@ -134,8 +134,10 @@ function printMessage(res) {
 }
 
 function printTitle(result) {
-    var title = getSubject(result.messages)
-    $('#content').append("<div class='col'><a href='#' class='thread-link' data-thread="+ result.id + ">" + title + "</a></div>");
+    var title = getSubject(result.messages);
+    if (title.match(/brocoders/i)) {
+        $('#content').append("<div class='col'><a href='#' class='thread-link' data-thread="+ result.id + ">" + title + "</a></div>");
+    }
 }
 
 $('body').on('click', '.thread-link', function(e) {
