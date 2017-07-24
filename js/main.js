@@ -140,7 +140,7 @@ function printTitle(result) {
     if (title.match(/brocoders/i)) {
         var date = title.match(dateReg)
         if (date) { date = date[0] }
-        $('#content .table tbody').append("<tr><td>" + date + "</td><td><a href='#' class='thread-link' data-thread="+ result.id + ">" + title + "</a></td></tr>");
+        $('#content .table tbody').append("<tr><td>" + date + "</td><td><a href='#' class='thread-link' data-thread="+ result.id + ">Report for " + date + "</a></td></tr>");
     }
 }
 
