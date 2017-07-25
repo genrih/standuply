@@ -1,6 +1,6 @@
 
 // Client ID and API key from the Developer Console
-var CLIENT_ID = '516803791757-ulh2lill4n7738eqofh3sqhepikjrfps.apps.googleusercontent.com';
+var CLIENT_ID = '393863627244-9rri6l7nsvl6i1o6labv7bree4as831d.apps.googleusercontent.com';
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
@@ -12,7 +12,7 @@ var SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
 
-var userId = 'test.brocoders@gmail.com';
+var userId = 'piggy.team.reports@gmail.com';
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -46,11 +46,18 @@ function initClient() {
  *  appropriately. After a sign-in, the API is called.
  */
 function updateSigninStatus(isSignedIn) {
+    var reportTable = $('#report'),
+        authorizeMessage = $('#authorize');
     if (isSignedIn) {
+        authorizeMessage.hide();
+        reportTable.show();
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
         listThreads(userId, '', groupMessages);
     } else {
+        reportTable.hide();
+        reportTable.find('tbody').empty();
+        authorizeMessage.show();
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
     }
