@@ -136,7 +136,7 @@ function printMessage(res) {
     });
 
     modal.modal('show');
-    modal.find('.modal-header').html(getSubject(res.messages));
+    modal.find('.modal-header').html('Report for ' + getDate(getSubject(res.messages)));
     modal.find('.modal-body').html(messages);
 }
 
@@ -145,8 +145,7 @@ function printTitle(result) {
         title = getSubject(result.messages);
 
     if (title.match(/brocoders/i)) {
-        var date = title.match(dateReg)
-        if (date) { date = date[0] }
+        var date = getDate(title)
         $('#content .table tbody').append("<tr><td>" + date + "</td><td><a href='#' class='thread-link' data-thread="+ result.id + ">Report for " + date + "</a></td></tr>");
     }
 }
@@ -159,6 +158,14 @@ $('body').on('click', '.thread-link', function(e) {
 
 function decode(string) {
     return decodeURIComponent(escape(atob(string.replace(/\-/g, '+').replace(/\_/g, '/'))));
+}
+
+function getDate(title) {
+    var dateReg = /\d{1,4}([./-])\d{1,4}\1\d{1,4}/,
+        date = title.match(dateReg);
+    if (date) {
+        return date[0];
+    }
 }
 
 function getText(response) {
